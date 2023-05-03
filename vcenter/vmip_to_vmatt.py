@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from com.vmware.vcenter.vm_client import CustomAttributes
 from com.vmware.vcenter.vm_client import Network
 from vmware.vapi.vsphere.client import create_vsphere_client
