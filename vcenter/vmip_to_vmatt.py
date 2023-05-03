@@ -6,26 +6,19 @@ from pyVmomi import vim
 # Connect to vCenter server
 si = SmartConnect(host="<VCENTER_SERVER_IP>", user="<USERNAME>", pwd="<PASSWORD>")
 
-# Get all virtual machines
-content = si.RetrieveContent()
+# Get all VMs
 vm_view = content.viewManager.CreateContainerView(content.rootFolder, [vim.VirtualMachine], True)
 vms = vm_view.view
 
-# Define the attribute key
-attribute_key = "ip_address"
-
-# Iterate through all virtual machines and set their IP addresses as attributes
+# Loop through each VM
 for vm in vms:
-    vm_name = vm.name
-    ip_address = None
-    for nic in vm.guest.net:
-        if nic.network != None:
-            ip_address = nic.ipAddress[0]
-    if ip_address:
-        print(f"Setting attribute '{attribute_key}' to '{ip_address}' for virtual machine '{vm_name}'")
-        spec = vim.vm.ConfigSpec()
-        spec.extraConfig = [vim.option.OptionValue(key=attribute_key, value=ip_address)]
-        vm.ReconfigVM_Task(spec=spec)
-        
+  # Get the network adapter info from the annotation
+  ip_address=None
+  ip_address=vm.guest.ipAddress
+  # Set the IP address as an attribute of the VM, if it exists
+  if vm.guest.ipAddress != None:
+    vm.SetCustomValue("IP Address", ip_address)
+    print(vm.name, "sanal sunucu attribute ip bilgisine", vm.guest.ipAddress, "yazıldı")
+
 # Disconnect from vCenter server
 Disconnect(si)
