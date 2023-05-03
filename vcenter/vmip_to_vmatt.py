@@ -18,7 +18,7 @@ for vm in vms:
   # Set the IP address as an attribute of the VM, if it exists
   if vm.guest.ipAddress != None:
     vm.SetCustomValue("IP Address", ip_address)
-    print(vm.name, "sanal sunucu attribute ip bilgisine", vm.guest.ipAddress, "yazıldı")
+    print(vm.name, "sanal sunucu attribute ip bilgisine", ip_address, "yazıldı")
 
 # Disconnect from vCenter server
 Disconnect(si)
