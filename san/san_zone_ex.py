@@ -1,7 +1,7 @@
 import csv
 
 # Open the CSV file and create a CSV reader object
-with open("zones.csv", 'r') as csvfile:
+with open("zone.csv", 'r') as csvfile:
     csvreader = csv.reader(csvfile)
     
     # Loop through each row in the CSV file

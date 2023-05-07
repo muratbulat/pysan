@@ -1,7 +1,7 @@
 import csv
 
 # Open the CSV file and create a CSV reader object
-with open('aliases.csv', 'r') as csvfile:
+with open('alias.csv', 'r') as csvfile:
     csvreader = csv.reader(csvfile)
     
     # Loop through each row in the CSV fileprint("ALIASES")
