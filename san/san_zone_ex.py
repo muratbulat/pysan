@@ -18,3 +18,5 @@ with open('san/zone.csv', 'r') as csvfile:
         
         # Print the zone creation command to the console
         print(zone_create_cmd)
+    print("::::::::::::::::::::::::::::::::::::::::::::")
+    print("ZONES")

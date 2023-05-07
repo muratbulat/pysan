@@ -17,3 +17,5 @@ with open('san/alias.csv', 'r') as csvfile:
         
         # Print the alias creation command to the console
         print(alias_create_cmd)
+    print("::::::::::::::::::::::::::::::::::::::::::::")
+    print("ALIASES")
