@@ -4,7 +4,9 @@ import csv
 with open('aliases.csv', 'r') as csvfile:
     csvreader = csv.reader(csvfile)
     
-    # Loop through each row in the CSV file
+    # Loop through each row in the CSV fileprint("ALIASES")
+    print("ALIASES")
+    print("::::::::::::::::::::::::::::::::::::::::::::")
     for row in csvreader:
         # Extract the alias name and member list from the row
         alias_name = row[0]
