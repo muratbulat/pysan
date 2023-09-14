@@ -7,8 +7,8 @@ switch_username = "admin"
 switch_password = "password"
 
 # Define variables for the paths to the alias.csv and zone.csv files
-alias_csv_file = "alias.csv"
-zone_csv_file = "zone.csv"
+alias_csv_file = "data/alias.csv"
+zone_csv_file = "data/zone.csv"
 
 # Create a dictionary to store the alias information
 alias_dict = {}
