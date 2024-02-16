@@ -37,8 +37,12 @@
             vc_ip_address: "{{ ip_address_info['ip_address']['address'] | ansible.utils.ipaddr('ip')  }}"
             vc_netmask: "{{ ip_address_info['ip_address']['address'] | ansible.utils.ipaddr('netmask') }}"
             vc_gateway: "{{ nb_prefix_info['json']['results'][0]['custom_fields']['Gateway']['address'] | ansible.utils.ipaddr('ip') }}"
+            vc_vid: "{{ nb_prefix_info['json']['results'][0]['vlan']['vid'] }}"
+            vc_dns01: "{{ nb_prefix_info['json']['results'][0]['custom_fields']['DNSS01'] }}"
+            vc_dns02: "{{ nb_prefix_info['json']['results'][0]['custom_fields']['DNSS02'] }}"
+            vc_dns03: "{{ nb_prefix_info['json']['results'][0]['custom_fields']['DNSS03'] }}"
 
     - name: Debug
       ansible.builtin.debug:
         msg:
-        - "vc_ip_address '{{ vc_ip_address }}', vc_netmask '{{ vc_netmask }}', vc_gateway '{{ vc_gateway }}' "
+        - "vc_ip_address '{{ vc_ip_address }}', vc_netmask '{{ vc_netmask }}', vc_gateway '{{ vc_gateway }}', vc_vid '{{ vc_vid }}' "
