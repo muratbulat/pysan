@@ -1,0 +1,44 @@
+# code: language=ansible
+# https://github.com/muratbulat/fayton
+---
+- name: "Netbox Ip"
+  gather_facts: no
+  hosts: localhost
+  vars:
+    nb_prefix: "10.48.6.0/24"
+    nb_url: https://demo.netbox.dev
+    nb_token: fdd47c8212aa1aa20bff8d16b139ae5f9943a8ca
+  tasks:
+    - name: "Localhost Block"
+      delegate_to: localhost
+      block:
+
+        - name: "Netbox - Prefixten ip ve netmask bilgisi alınıyor.."
+          netbox.netbox.netbox_ip_address:
+            netbox_url: "{{ nb_url }}"
+            netbox_token: "{{ nb_token }}"
+            data:
+              prefix: "{{ nb_prefix }}"
+            state: new
+          register: ip_address_info
+
+        - name: "Gateway bilgisini al"
+          uri:
+            url: "{{ nb_url }}/api/ipam/prefixes/?prefix={{ nb_prefix }}"
+            method: "GET"
+            headers:
+              Content-Type: "application/json"
+              Authorization: "token {{ nb_token }}"
+            status_code: 200
+          register: nb_prefix_info
+
+        - name: "Netbox - Ip, netmask ve gateway bilgisi kullanıma hazırlanıyor.."
+          set_fact:
+            vc_ip_address: "{{ ip_address_info['ip_address']['address'] | ansible.utils.ipaddr('ip')  }}"
+            vc_netmask: "{{ ip_address_info['ip_address']['address'] | ansible.utils.ipaddr('netmask') }}"
+            vc_gateway: "{{ nb_prefix_info['json']['results'][0]['custom_fields']['Gateway']['address'] | ansible.utils.ipaddr('ip') }}"
+
+    - name: Debug
+      ansible.builtin.debug:
+        msg:
+        - "vc_ip_address '{{ vc_ip_address }}', vc_netmask '{{ vc_netmask }}', vc_gateway '{{ vc_gateway }}' "
