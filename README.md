@@ -1,4 +1,4 @@
-# Python-Ansible Automation-Scripts
+# Python Ansible Automation
 
 Simple python scripts for automating some tasks , this repo will be updated continuously.
 
