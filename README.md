@@ -2,6 +2,8 @@
 
 Simple python scripts for automating some tasks , this repo will be updated continuously.
 
+![fayton](content/fayton_s.jpg)
+
 ## Available options:
 * Brocade SAN switch alias generator : [san_alias_ex.py](https://github.com/muratbulat/fayton/blob/master/san/san_alias_ex.py)
 
